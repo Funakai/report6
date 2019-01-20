@@ -14,9 +14,10 @@ public class Enemy extends LivingThing {
      * @param name 敵のポケモン名
      * @param maximumHP 敵のポケモンのHP
      * @param attack 敵のポケモンの攻撃力
+     * @param defense 敵のポケモンの防御力
      */
-    public Enemy (String name, int maximumHP, int attack) {
-        super(name,maximumHP,attack);
+    public Enemy (String name, int maximumHP, int attack, int defense) {
+        super(name,maximumHP,attack,defense);
     }
 
     /**
@@ -26,19 +27,12 @@ public class Enemy extends LivingThing {
      */
     public void wounded(int damage){
         int num = getHitPoint();
-
-        //防御をしている時
-        /*if(){
-            damage /= 2;
-        }
-        */
-
         num -= damage;
         setHitPoint(num);
 
         if( num < 0 ) {
             setDead(true);
-            System.out.printf("モンスター%sは倒れた。\n", getName());
+            System.out.printf("相手の%sは倒れた。\nプレイヤーは勝利した。", getName());
         }
     }
 }

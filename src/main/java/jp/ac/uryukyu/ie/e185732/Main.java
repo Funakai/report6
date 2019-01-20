@@ -7,8 +7,8 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args){
-        Player player = new Player("プレイヤー", 10, 5);
-        Enemy enemy = new Enemy("スライム", 6, 3);
+        Player player = new Player("プレイヤー", 10, 5,0);
+        Enemy enemy = new Enemy("スライム", 12,3,0);
 
         System.out.printf("%s vs. %s\n", player.getName(), enemy.getName());
 
@@ -42,12 +42,10 @@ public class Main {
                     }
                     break;
                 case 2:
-                    System.out.println("プレイヤーは防御をした。");
-                    player.defend("も");
+                    player.defend();
                     break;
             }
 
-            //player.attack(enemy);
             enemy.attack(player);
             player.getHitPoint();
         }

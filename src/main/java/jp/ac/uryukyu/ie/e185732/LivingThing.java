@@ -1,17 +1,18 @@
 package jp.ac.uryukyu.ie.e185732;
 
 /**
- * 敵クラス。
- *  String name; //敵の名前
- *  int hitPoint; //敵のHP
- *  int attack; //敵の攻撃力
- *  boolean dead; //敵の生死状態。true=死亡。
+ * 基本的なステータスのクラス。
+ *  String name; //名前
+ *  int hitPoint; //HP
+ *  int attack; //攻撃力
+ *  int defense; //防御力
+ *  boolean dead; //生死状態。true=死亡。
  */
 public class LivingThing {
     private String name;
     private int hitPoint;
     private int attack;
-    private boolean defense;
+    private int defense;
     private boolean dead;
 
     /**
@@ -19,12 +20,13 @@ public class LivingThing {
      * @param name ポケモン名
      * @param maximumHP ポケモンのHP
      * @param attack ポケモンの攻撃力
+     * @param defense ポケモンの防御力。初期値は0。
      */
-    public LivingThing (String name, int maximumHP, int attack) {
+    public LivingThing (String name, int maximumHP, int attack, int defense) {
         this.name = name;
         hitPoint = maximumHP;
         this.attack = attack;
-        defense = false;
+        this.defense = defense;
         dead = false;
         System.out.printf("%sのHPは%d。攻撃力は%dです。\n", name, maximumHP, attack);
     }
@@ -37,8 +39,8 @@ public class LivingThing {
         return dead;
     }
 
-    public boolean isDefense() {
-        return defense;
+    public void setDead(boolean dead) {
+        this.dead = dead;
     }
 
     public String getName(){
@@ -65,11 +67,11 @@ public class LivingThing {
         this.attack = attack;
     }
 
-    public void setDead(boolean dead) {
-        this.dead = dead;
+    public int getDefense() {
+        return defense;
     }
 
-    public void setDefense(boolean defense) {
+    public void setDefense(int defense) {
         this.defense = defense;
     }
 
@@ -81,17 +83,18 @@ public class LivingThing {
      */
     public void attack(LivingThing opponent){
         if ( isDead() == false ) {
-            int damage = (int)(Math.random() * attack);
+            int damage = (int)(Math.random() * attack +1);
             System.out.printf("%sの攻撃！%sに%dのダメージを与えた！！\n", name, opponent.getName(), damage);
             opponent.wounded(damage);
         }
     }
 
-    public void defend(String name){
-        if ( isDefense() == true ) {
-            System.out.println(name + "は防御している。");
-            this.defense = true;
-        }
+    /**
+     * 自分自身を防御するメソッド。
+     * 「2.ぼうぎょ」することで1ターンの間、防御力を1あげる。防御している間はダメージを半減できる。
+     */
+    public void defend(){
+        defense = 1;
     }
 
     /**
@@ -100,13 +103,15 @@ public class LivingThing {
      * @param damage 受けたダメージ
      */
     public void wounded(int damage){
-        hitPoint -= damage;
-        /*if() {
-            this.defense = true;
-            damage /= 2;
+
+        if ( defense == 1) {
+            hitPoint -= (damage /= 2);
+            System.out.println(name + "は防御している。");
         }
-        */
-        if( hitPoint < 0 ) {
+        switch ( defense ){
+            case 1:
+                hitPoint -= damage;
+        } if( hitPoint < 0 ) {
             dead = true;
             System.out.printf("%sは倒れた。\n", name);
         }
