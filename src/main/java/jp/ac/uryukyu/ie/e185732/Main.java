@@ -7,8 +7,8 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args){
-        Player player = new Player("プレイヤー", 10, 5,0);
-        Enemy enemy = new Enemy("スライム", 12,3,0);
+        Player player = new Player("リザードン", 78, 9,0);
+        Enemy enemy = new Enemy("フシギバナ", 88,7,0);
 
         System.out.printf("%s vs. %s\n", player.getName(), enemy.getName());
 
@@ -21,23 +21,23 @@ public class Main {
 
             switch (val){
                 case 1:
-                    System.out.println("1.かえんほうしゃ 2.ほのおパンチ 3.はたく 4.たいあたり");
+                    System.out.println("1.かえんほうしゃ 2.フレアドライブ 3.きりさく 4.そらをとぶ");
 
                     Scanner scn = new Scanner(System.in);
                     int num = scn.nextInt();
 
                     switch (num){
                         case 1:
-                            player.attack(enemy);
+                            player.Flamethrower(enemy);
                             break;
                         case 2:
-                            player.attack(enemy);
+                            player.FlareBlitz(enemy);
                             break;
                         case 3:
-                            player.attack(enemy);
+                            player.Slash(enemy);
                             break;
                         case 4:
-                            player.attack(enemy);
+                            player.Fly(enemy);
                             break;
                     }
                     break;
@@ -46,8 +46,25 @@ public class Main {
                     break;
             }
 
-            enemy.attack(player);
+            int number = (int)(Math.random() * 4 +1);
+
+            switch (number){
+                case 1:
+                    enemy.SolarBeam(player);
+                    break;
+                case 2:
+                    enemy.SludgeBomb(player);
+                    break;
+                case 3:
+                    enemy.HyperBeam(player);
+                    break;
+                case 4:
+                    enemy.Earthquake(player);
+                    break;
+            }
+
             player.getHitPoint();
+            enemy.getHitPoint();
         }
         System.out.println("戦闘終了");
     }

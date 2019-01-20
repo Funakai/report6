@@ -21,6 +21,52 @@ public class Enemy extends LivingThing {
     }
 
     /**
+     * 対象へ攻撃するメソッド。（以下４つのメソッド。）
+     * offensiveに応じて乱数でダメージを算出し、opponent.wounded()によりダメージ処理を実行。
+     * @param opponent 攻撃対象
+     */
+
+    //ソーラービーム
+    public void SolarBeam (LivingThing opponent) {
+        if (isDead() == false) {
+            int offensive = getAttack();
+            int damage = (int) (Math.random() * offensive + 1)*3;
+            System.out.printf("敵の%sのソーラービーム！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
+            opponent.wounded(damage);
+        }
+    }
+
+    //ヘドロばくだん
+    public void SludgeBomb (LivingThing opponent) {
+        if (isDead() == false) {
+            int offensive = getAttack();
+            int damage = (int) (Math.random() * offensive + 1);
+            System.out.printf("敵の%sのヘドロばくだん！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
+            opponent.wounded(damage);
+        }
+    }
+
+    //はかいこうせん
+    public void HyperBeam (LivingThing opponent) {
+        if (isDead() == false) {
+            int offensive = getAttack();
+            int damage = (int) (Math.random() * offensive + 1)*4;
+            System.out.printf("敵の%sのはかいこうせん！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
+            opponent.wounded(damage);
+        }
+    }
+
+    //じしん
+    public void Earthquake (LivingThing opponent) {
+        if (isDead() == false) {
+            int offensive = getAttack();
+            int damage = (int) (Math.random() * offensive + 1)*2;
+            System.out.printf("敵の%sのじしん！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
+            opponent.wounded(damage);
+        }
+    }
+
+    /**
      * 自身へ攻撃されたときのダメージ処理をするメソッド。
      * 指定されたダメージを hitPoint から引き、死亡判定を行う。
      * @param damage 受けたダメージ
