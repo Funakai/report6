@@ -43,7 +43,7 @@ public class LivingThing {
         this.dead = dead;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -83,7 +83,7 @@ public class LivingThing {
      */
     public void attack(LivingThing opponent){
         if ( isDead() == false ) {
-            int damage = (int)(Math.random() * attack +1);
+            int damage = (int)(Math.random() * attack) +1;
             System.out.printf("%sの攻撃！%sに%dのダメージを与えた！！\n", name, opponent.getName(), damage);
             opponent.wounded(damage);
         }
@@ -93,7 +93,7 @@ public class LivingThing {
      * 自分自身を防御するメソッド。
      * 「2.ぼうぎょ」することで1ターンの間、防御力を1あげる。防御している間はダメージを半減できる。
      */
-    public void defend(){
+    public void defend() {
         defense = 1;
     }
 

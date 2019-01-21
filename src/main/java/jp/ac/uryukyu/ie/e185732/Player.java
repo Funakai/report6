@@ -30,7 +30,7 @@ public class Player extends LivingThing {
     public void Flamethrower (LivingThing opponent){
         if ( isDead() == false ) {
             int offensive = getAttack();
-            int damage = (int) (Math.random() * offensive +1)*2;
+            int damage = (int) (Math.random() * offensive) + 12;
             System.out.printf("%sのかえんほうしゃ！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
             opponent.wounded(damage);
         }
@@ -40,7 +40,7 @@ public class Player extends LivingThing {
     public void FlareBlitz (LivingThing opponent) {
         if ( isDead() == false ) {
             int offensive = getAttack();
-            int damage = (int) (Math.random() * offensive + 1)*3;
+            int damage = (int) (Math.random() * offensive) + 20;
             System.out.printf("%sのフレアドライブ！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
             opponent.wounded(damage);
         }
@@ -50,7 +50,7 @@ public class Player extends LivingThing {
     public void Slash (LivingThing opponent) {
         if ( isDead() == false ) {
             int offensive = getAttack();
-            int damage = (int) (Math.random() * offensive + 1);
+            int damage = (int) (Math.random() * offensive) + 6;
             System.out.printf("%sのきりさく！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
             opponent.wounded(damage);
         }
@@ -60,7 +60,7 @@ public class Player extends LivingThing {
     public void Fly (LivingThing opponent) {
         if ( isDead() == false ) {
             int offensive = getAttack();
-            int damage = (int) (Math.random() * offensive + 1)*2;
+            int damage = (int) (Math.random() * offensive) + 12;
             System.out.printf("%sのそらをとぶ！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
             opponent.wounded(damage);
         }
@@ -83,7 +83,7 @@ public class Player extends LivingThing {
         if (def_val == 1) {
             num -= (damage /= 2);
             setHitPoint(num);
-            System.out.printf("プレイヤーの%sは防御している。\n", getName());
+            System.out.printf("しかし、プレイヤーの%sは防御している。ダメージが半減された！\n", getName());
             def_val = 0;
             setDefense(def_val);
         }

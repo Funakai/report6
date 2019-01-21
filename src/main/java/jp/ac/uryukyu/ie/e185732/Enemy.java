@@ -30,7 +30,7 @@ public class Enemy extends LivingThing {
     public void SolarBeam (LivingThing opponent) {
         if (isDead() == false) {
             int offensive = getAttack();
-            int damage = (int) (Math.random() * offensive + 1)*3;
+            int damage = (int) (Math.random() * offensive) + 15;
             System.out.printf("敵の%sのソーラービーム！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
             opponent.wounded(damage);
         }
@@ -40,7 +40,7 @@ public class Enemy extends LivingThing {
     public void SludgeBomb (LivingThing opponent) {
         if (isDead() == false) {
             int offensive = getAttack();
-            int damage = (int) (Math.random() * offensive + 1);
+            int damage = (int) (Math.random() * offensive) + 5;
             System.out.printf("敵の%sのヘドロばくだん！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
             opponent.wounded(damage);
         }
@@ -50,7 +50,7 @@ public class Enemy extends LivingThing {
     public void HyperBeam (LivingThing opponent) {
         if (isDead() == false) {
             int offensive = getAttack();
-            int damage = (int) (Math.random() * offensive + 1)*4;
+            int damage = (int) (Math.random() * offensive) + 20;
             System.out.printf("敵の%sのはかいこうせん！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
             opponent.wounded(damage);
         }
@@ -60,7 +60,7 @@ public class Enemy extends LivingThing {
     public void Earthquake (LivingThing opponent) {
         if (isDead() == false) {
             int offensive = getAttack();
-            int damage = (int) (Math.random() * offensive + 1)*2;
+            int damage = (int) (Math.random() * offensive) + 10;
             System.out.printf("敵の%sのじしん！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
             opponent.wounded(damage);
         }
